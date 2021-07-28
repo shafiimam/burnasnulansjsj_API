@@ -1,0 +1,18 @@
+{
+  "name": "apiv1",
+  "version": "1.0.0",
+  "description": "api for barnusnulansj",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shafiimam/burnasnulansjsj_API.git"
+  },
+  "author": "shafi imam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shafiimam/burnasnulansjsj_API/issues"
+  }
+}
