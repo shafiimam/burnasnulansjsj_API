@@ -2,9 +2,11 @@
   "name": "apiv1",
   "version": "1.0.0",
   "description": "api for barnusnulansj",
-  "main": "index.js",
+  "main": "server.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node back-end/server.js",
+    "server":"nodemon back-end/server.js"
   },
   "repository": {
     "type": "git",
@@ -14,5 +16,21 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/shafiimam/burnasnulansjsj_API/issues"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "colors": "^1.4.0",
+    "concurrently": "^6.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.13.3",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "nodemon": "^2.0.12",
+    "save": "^2.4.0"
   }
 }
