@@ -1,7 +1,8 @@
 import asyncHandler from "express-async-handler";
 import User from "../models/userModel.js";
 import generateToken from "../utils/generateToken.js";
-
+import randString from "../utils/randString.js";
+import sendEmail from "../utils/sendEmail.js";
 //@desc auth user and get token
 //@route post api/v1/login
 //@access public
@@ -17,6 +18,7 @@ const authUser = asyncHandler(async (req, res) => {
       email: user.email,
       phone: user.phone,
       isAdmin: user.isAdmin,
+      isVerified: user.isVerified,
       token: generateToken(user._id),
     });
   } else {
@@ -30,6 +32,8 @@ const authUser = asyncHandler(async (req, res) => {
 //@access public
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, phone, password } = req.body;
+  const isVerified = false;
+  const uniqueString = randString();
   const userExist = await User.findOne({ email });
 
   if (userExist) {
@@ -42,6 +46,8 @@ const registerUser = asyncHandler(async (req, res) => {
     email,
     phone,
     password,
+    uniqueString,
+    isVerified,
   });
   if (user) {
     res.status(201).json({
@@ -50,13 +56,31 @@ const registerUser = asyncHandler(async (req, res) => {
       email: user.email,
       phone: user.phone,
       isAdmin: user.isAdmin,
+      isVerified: user.isVerified,
       token: generateToken(user._id),
     });
+    sendEmail(email, uniqueString);
   } else {
     res.status(400);
     throw new Error("Invalid user data");
   }
 });
+//@desc get verify user email
+//@route api/v1/verify/:uniqueString
+//@access public
+const verifyUserEmail = asyncHandler(async (req, res) => {
+  const uniqueString = req.params.uniqueString;
+  const user = await User.findOne({ uniqueString: uniqueString });
+  if (user) {
+    user.isVerified = true;
+    await user.save();
+    res.status(200);
+    res.json({ message: "Email verified successfully" });
+  } else {
+    res.json("user not found");
+  }
+});
+
 //@desc get user profile
 //@route get api/v1/user
 //@access private
@@ -127,4 +151,5 @@ export {
   getUserProfile,
   updateUserProfile,
   deleteUser,
+  verifyUserEmail,
 };
