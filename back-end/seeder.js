@@ -16,7 +16,7 @@ const importData = async () => {
     const createdUser = await User.insertMany(users);
     const adminUser = createdUser[0]._id;
     await Category.insertMany(menu);
-    console.log("data imported", createdUser);
+    console.log("data imported".green.inversed);
   } catch (error) {
     console.log(`error: ${error}`.red.underline);
     process.exit(1);
