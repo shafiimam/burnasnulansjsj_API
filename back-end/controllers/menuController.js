@@ -6,7 +6,7 @@ import Category from "../models/categoriesModel.js";
 //@access public
 
 const getMenu = asyncHandler(async (req, res) => {
-  const menu = await Category.fin({});
+  const menu = await Category.find({});
   res.json(menu);
 });
 

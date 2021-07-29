@@ -7,11 +7,11 @@ import connectDB from "./config/db.js";
 import colors from "colors";
 import morgan from "morgan";
 import menuRoutes from "./routes/menuRoutes.js";
-import userRoutes from "./routes/menuRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 dotenv.config();
 const app = express();
-if (process.env.NODE_ENV === "development") {
+if (process.env.NODE_ENV === "DEVELOPMENT") {
   app.use(morgan("dev"));
 }
 app.use(cors());
@@ -19,7 +19,7 @@ app.use(express.json());
 connectDB();
 
 app.use("/api/v1/categories", menuRoutes);
-app.use("api/v1/users", userRoutes);
+app.use("/api/v1/user", userRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

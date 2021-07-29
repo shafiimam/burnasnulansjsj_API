@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node back-end/server.js",
-    "server":"nodemon back-end/server.js"
+    "server": "nodemon back-end/server.js",
+    "data:import": "node back-end/seeder.js"
   },
   "repository": {
     "type": "git",
