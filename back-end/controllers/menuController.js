@@ -16,14 +16,14 @@ const getMenu = asyncHandler(async (req, res) => {
 
 const createCategory = asyncHandler(async (req, res) => {
   const category = new Category({
-    title: "sample title",
+    title: req.body.title,
     menu: {
-      title: "sample title",
-      type: "sample type",
-      day: "Monday",
-      image: "Images/sample.jpg",
-      price: 10,
-      description: "Sample description",
+      title: req.body.menu.title,
+      type: req.body.menu.type,
+      day: req.body.menu.day,
+      image: req.body.menu.image,
+      price: req.body.menu.price,
+      description: req.body.menu.description,
     },
   });
   const createdCategory = await category.save();

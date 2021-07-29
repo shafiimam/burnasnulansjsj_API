@@ -1,5 +1,5 @@
-import pkg from "mongoose";
 import dotenv from "dotenv";
+import pkg from "mongoose";
 dotenv.config();
 const mongoose = pkg;
 
@@ -10,9 +10,9 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useCreateIndex: true,
     });
-    console.log(`mongodb connected:${conn.connection.host}`.cyan.underline);
+    console.log(`mongodb connected:${conn.connection.host}`);
   } catch (error) {
-    console.error(`error:${error.message}`.red.underline.bold);
+    console.error(`error:${error.message}`);
     process.exit(1);
   }
 };
